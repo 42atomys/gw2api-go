@@ -22,8 +22,7 @@ func TestRequestor_WorldBoss(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := gw2api.NewRequestor()
-			if got := r.WorldBoss(&tt.args.worldBoss, tt.args.id).Err(); tt.wantErr == (got != nil) {
+			if got := tt.requestor.WorldBoss(&tt.args.worldBoss, tt.args.id).Err(); (got != nil) != tt.wantErr {
 				t.Errorf("Requestor.World() = %v, want error %v", got, tt.wantErr)
 			}
 		})
@@ -44,8 +43,7 @@ func TestRequestor_WorldBosses(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			r := gw2api.NewRequestor()
-			if got := r.WorldBosses(tt.args.worldBosses).Err(); tt.wantErr == (got != nil) {
+			if got := tt.requestor.WorldBosses(tt.args.worldBosses).Err(); (got != nil) != tt.wantErr {
 				t.Errorf("Requestor.World() = %v, want error %v", got, tt.wantErr)
 			}
 		})

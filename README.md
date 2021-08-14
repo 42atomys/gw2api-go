@@ -21,25 +21,25 @@ todo
 - [] Subtoken support
 - [] Pagination support
 - [] v2/
-  - [] account
-    - [] account/achievements
-    - [] account/bank
-    - [] account/buildstorage
-    - [] account/dailycrafting
-    - [] account/dungeons
-    - [] account/dyes
-    - [] account/emotes
-    - [] account/finishers
-    - [] account/gliders
-    - [] account/home
-    - [] account/home/cats
-    - [] account/home/nodes
-    - [] account/inventory
-    - [] account/legendaryarmory
-    - [] account/luck
-    - [] account/mail
-    - [] account/mailcarriers
-    - [] account/mapchests
+  - [x] account
+    - [x] account/achievements
+    - [x] account/bank
+    - [x] account/buildstorage
+    - [x] account/dailycrafting
+    - [x] account/dungeons
+    - [x] account/dyes
+    - [x] account/emotes
+    - [x] account/finishers
+    - [x] account/gliders
+    - [ ] account/home
+    - [x] account/home/cats
+    - [x] account/home/nodes
+    - [x] account/inventory
+    - [x] account/legendaryarmory
+    - [x] account/luck
+    - [-] account/mail (API not active)
+    - [x] account/mailcarriers
+    - [x] account/mapchests
     - [] account/masteries
     - [] account/mastery/points
     - [] account/materials
@@ -163,7 +163,7 @@ todo
   - [] titles
   - [] tokeninfo
   - [] traits
-  - [] vendors
+  - [-] vendors (API not active)
   - [x] worldbosses
   - [x] worlds
   - [] wvw/abilities

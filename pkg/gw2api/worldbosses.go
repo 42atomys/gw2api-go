@@ -1,3 +1,4 @@
+//go:generate easytags $GOFILE
 package gw2api
 
 import (

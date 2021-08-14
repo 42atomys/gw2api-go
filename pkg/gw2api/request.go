@@ -34,8 +34,10 @@ const (
 )
 
 var (
-	ErrTooManyRequest = errors.New("too many request: 429")
-	BaseURL, _        = url.Parse("https://api.guildwars2.com/v2")
+	ErrTooManyRequest        = errors.New("too many request: 429")
+	ErrRequireAuthentication = errors.New("API needs authentication")
+	ErrMissingScope          = errors.New("missing scope permissions")
+	BaseURL, _               = url.Parse("https://api.guildwars2.com/v2")
 )
 
 func NewRequestor() *Requestor {
@@ -80,11 +82,36 @@ func (r *Requestor) Lang(lang Lang) *Requestor {
 }
 
 func (r *Requestor) Err() error {
-	return r.err
+	err := r.err
+	r.err = nil
+	return err
+}
+
+func (r *Requestor) needPerms(perms ...TokenPermission) *Requestor {
+	if r.token == "" {
+		r.err = ErrRequireAuthentication
+		goto Return
+	}
+
+	for _, perm := range perms {
+		if perm >= 1 && !getBitwise(r.permissions, uint(perm)) {
+			r.err = ErrMissingScope
+			goto Return
+		}
+	}
+
+Return:
+	return r
 }
 
 func (r *Requestor) request(endpoint string, queryParams url.Values, v interface{}) {
-	url := BaseURL
+	// dont perform if an error is already
+	// present
+	if r.err != nil {
+		return
+	}
+
+	url := *BaseURL
 	url.Path += endpoint
 
 	if queryParams != nil {
