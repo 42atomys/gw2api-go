@@ -25,11 +25,6 @@ type Requestor struct {
 type AuthToken string
 type Lang string
 
-type Response struct {
-	Body   []byte
-	Status int
-}
-
 const (
 	LangFR Lang = "fr"
 	LangEN Lang = "en"

@@ -164,7 +164,7 @@ todo
   - [] tokeninfo
   - [] traits
   - [] vendors
-  - [] worldbosses
+  - [x] worldbosses
   - [x] worlds
   - [] wvw/abilities
   - [] wvw/matches
