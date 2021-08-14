@@ -134,7 +134,9 @@ type AccountBuildStorage struct {
 	// Ranger specific structure for Account BuildStorage
 	Pets AccountBuildStoragePets `json:"pets"`
 
-	// TODO Profession specific
+	// Revenant specific structure for Account BuildStorage
+	Legends        []string `json:"legends"`
+	AquaticLegends []string `json:"aquatic_legends"`
 }
 
 type AccountBuildStorageSpecialization struct {
