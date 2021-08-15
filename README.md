@@ -65,7 +65,7 @@ todo
       - [-] adventures/:id/leaderboards/:board/:region (API not active)
   - [x] backstory/answers
   - [x] backstory/questions
-  - [ ] build
+  - [x] build
   - [ ] characters
     - [ ] characters/:id/backstory
     - [ ] characters/:id/buildtabs
@@ -84,7 +84,7 @@ todo
     - [ ] characters/:id/skills
     - [ ] characters/:id/specializations
     - [ ] characters/:id/training
-  - [ ] colors
+  - [x] colors
   - [ ] commerce/delivery
   - [ ] commerce/exchange
   - [ ] commerce/listings
