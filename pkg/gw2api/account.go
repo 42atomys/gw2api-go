@@ -1,7 +1,13 @@
 //go:generate easytags $GOFILE
 package gw2api
 
-import "time"
+import (
+	"errors"
+	"fmt"
+	"net/url"
+	"strings"
+	"time"
+)
 
 type Account struct {
 	// The unique persistent account GUID.
@@ -106,7 +112,7 @@ type AccountInventoryItem struct {
 
 type AccountBankStat struct {
 	// The ID of the item's stats. Can be resolved against /v2/itemstats.
-	ID string `json:"id"`
+	ID int `json:"id"`
 	// The list of stats provided by this item. May include the following:
 	// AgonyResistance - Agony Resistance
 	// BoonDuration - Concentration
@@ -127,9 +133,9 @@ type AccountBuildStorage struct {
 	// The profession of the template build
 	Profession string `json:"profession"`
 	//Specializations
-	Specializations AccountBuildStorageSpecialization `json:"specializations"`
-	Skills          AccountBuildStorageSkills         `json:"skills"`
-	AquaticSkills   AccountBuildStorageSkills         `json:"aquatic_skills"`
+	Specializations []AccountBuildStorageSpecialization `json:"specializations"`
+	Skills          AccountBuildStorageSkills           `json:"skills"`
+	AquaticSkills   AccountBuildStorageSkills           `json:"aquatic_skills"`
 
 	// Ranger specific structure for Account BuildStorage
 	Pets AccountBuildStoragePets `json:"pets"`
@@ -192,18 +198,20 @@ type AccountMastery struct {
 }
 
 type AccountMasteryPoint struct {
-	Totals []struct {
-		// The mastery region. Current possible options:
-		// Tyria, Maguuma, Desert and Tundra.
-		Region string `json:"region"`
-		// Amount of masteries of this region spent in mastery tracks.
-		Spent int `json:"spent"`
-		// Amount of masteries of this region earned for the account.
-		Earned int `json:"earned"`
-	} `json:"totals"`
+	Totals []AccountMasteryPointTotals `json:"totals"`
 
 	// Array of unlocked mastery ids.
 	Unlocked []int `json:"unlocked"`
+}
+
+type AccountMasteryPointTotals struct {
+	// The mastery region. Current possible options:
+	// Tyria, Maguuma, Desert and Tundra.
+	Region string `json:"region"`
+	// Amount of masteries of this region spent in mastery tracks.
+	Spent int `json:"spent"`
+	// Amount of masteries of this region earned for the account.
+	Earned int `json:"earned"`
 }
 
 type AccountMaterial struct {
@@ -259,15 +267,48 @@ func (r *Requestor) AccountBank(accountBank *[]*AccountInventoryItem) *Requestor
 	return r
 }
 
+// This resource returns IDs of the templates stored in a player's build storage.
+// This endpoint is only accessible with a valid API key.
+// The endpoint returns an array of objects, each representing a template
+// slot in the build storage. The amount of templates is implied by the
+// length of the array.
+func (r *Requestor) AccountBuildStorageIDs(accountBuildStorage *[]int) *Requestor {
+	r.
+		needPerms(TokenPermissionAccount, TokenPermissionAccount).
+		request("/account/buildstorage", nil, &accountBuildStorage)
+	return r
+}
+
 // This resource returns the templates stored in a player's build storage.
 // This endpoint is only accessible with a valid API key.
 // The endpoint returns an array of objects, each representing a template
 // slot in the build storage. The amount of templates is implied by the
 // length of the array.
-func (r *Requestor) AccountBuildStorage(accountBuildStorage *[]*AccountBuildStorage) *Requestor {
+func (r *Requestor) AccountBuildStorages(accountBuildStorage *[]*AccountBuildStorage, ids ...int) *Requestor {
+	if len(ids) == 0 {
+		r.err = errors.New("at least one id must be given")
+		return r
+	}
+
+	var urlValues url.Values
+	sIds := strings.Trim(strings.Replace(fmt.Sprint(ids), " ", ",", -1), "[]")
+	urlValues = url.Values{"ids": strings.Split(sIds, ",")}
+
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionAccount).
-		request("/account/buildstorage", nil, &accountBuildStorage)
+		request("/account/buildstorage", urlValues, &accountBuildStorage)
+	return r
+}
+
+// This resource returns the templates stored in a player's build storage.
+// This endpoint is only accessible with a valid API key.
+// The endpoint returns an array of objects, each representing a template
+// slot in the build storage. The amount of templates is implied by the
+// length of the array.
+func (r *Requestor) AccountBuildStorage(accountBuildStorage *AccountBuildStorage, id int) *Requestor {
+	r.
+		needPerms(TokenPermissionAccount, TokenPermissionAccount).
+		request("/account/buildstorage", url.Values{"id": []string{fmt.Sprint(id)}}, &accountBuildStorage)
 	return r
 }
 
@@ -357,7 +398,7 @@ func (r *Requestor) AccountHomeCats(accountHomeCats *[]int) *Requestor {
 // This resource returns information about unlocked home instance nodes.
 // This request will return an array of strings. Each string represents
 // the id of a particular node that can be resolved against /v2/home/nodes.
-func (r *Requestor) AccountHomeNodes(accountHomeNodes *[]int) *Requestor {
+func (r *Requestor) AccountHomeNodes(accountHomeNodes *[]string) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionUnlocks).
 		request("/account/home/nodes", nil, &accountHomeNodes)
@@ -394,7 +435,7 @@ func (r *Requestor) AccountLegendaryArmory(accountLegendaryArmory *[]*AccountLeg
 func (r *Requestor) AccountLuck(accountLuck *[]*AccountLuck) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionProgression, TokenPermissionUnlocks).
-		request("/account/legendaryarmory", nil, &accountLuck)
+		request("/account/luck", nil, &accountLuck)
 	return r
 }
 
@@ -439,7 +480,7 @@ func (r *Requestor) AccountMasteries(accountMasteries *[]*AccountMastery) *Reque
 // that are unlocked for an account. A detailed mastery track completion
 // break down is available at /v2/account/masteries.
 // This request will return an object
-func (r *Requestor) AccountMasteryPoints(accountMasteryPoints *[]*AccountMasteryPoint) *Requestor {
+func (r *Requestor) AccountMasteryPoints(accountMasteryPoints *AccountMasteryPoint) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionProgression).
 		request("/account/mastery/points", nil, &accountMasteryPoints)
@@ -516,7 +557,7 @@ func (r *Requestor) AccountNovelties(accountNovelties *[]int) *Requestor {
 func (r *Requestor) AccountOutfils(accountOutfils *[]int) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionUnlocks).
-		request("/account/outfils", nil, &accountOutfils)
+		request("/account/outfits", nil, &accountOutfils)
 	return r
 }
 

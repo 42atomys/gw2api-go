@@ -60,8 +60,8 @@ func TestRequestor_Worlds(t *testing.T) {
 		args      args
 		wantErr   bool
 	}{
-		{"all worlds", gw2api.NewRequestor(), args{nil}, false},
-		{"no worlds given", gw2api.NewRequestor(), args{[]int{}}, false},
+		{"all worlds", gw2api.NewRequestor(), args{nil}, true},
+		{"no worlds given", gw2api.NewRequestor(), args{[]int{}}, true},
 		{"one or more worlds", gw2api.NewRequestor(), args{[]int{2101}}, false},
 		{"one or more invalid ids", gw2api.NewRequestor(), args{[]int{-1, -5}}, true},
 	}

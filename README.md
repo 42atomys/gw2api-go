@@ -14,13 +14,13 @@ GW2-API is a complete and up-to-date wrapper in Golang.
 todo 
 ### TODO
 
-- [] Core wrapper
+- [ ] Core wrapper
 - [x] Language support
-- [] API Token Permissions
-- [] Route active support
-- [] Subtoken support
-- [] Pagination support
-- [] v2/
+- [ ] API Token Permissions
+- [ ] Route active support
+- [ ] Subtoken support
+- [ ] Pagination support
+- [ ] v2/
   - [x] account
     - [x] account/achievements
     - [x] account/bank
@@ -31,150 +31,150 @@ todo
     - [x] account/emotes
     - [x] account/finishers
     - [x] account/gliders
-    - [ ] account/home
-    - [x] account/home/cats
-    - [x] account/home/nodes
+    - [x] account/home
+      - [x] account/home/cats
+      - [x] account/home/nodes
     - [x] account/inventory
     - [x] account/legendaryarmory
     - [x] account/luck
     - [-] account/mail (API not active)
     - [x] account/mailcarriers
     - [x] account/mapchests
-    - [] account/masteries
-    - [] account/mastery/points
-    - [] account/materials
-    - [] account/minis
-    - [] account/mounts
-    - [] account/mounts/skins
-    - [] account/mounts/types
-    - [] account/novelties
-    - [] account/outfits
-    - [] account/pvp/heroes
-    - [] account/raids
-    - [] account/recipes
-    - [] account/skins
-    - [] account/titles
-    - [] account/wallet
-    - [] account/worldbosses
-  - [] achievements
-    - [] achievements/categories
-    - [] achievements/daily
-    - [] achievements/daily/tomorrow
-    - [] achievements/groups
-  - [] adventures
-    - [] adventures/:id/leaderboards
-      - [] adventures/:id/leaderboards/:board/:region
-  - [] backstory/answers
-  - [] backstory/questions
-  - [] build
-  - [] characters
-    - [] characters/:id/backstory
-    - [] characters/:id/buildtabs
-    - [] characters/:id/buildtabs/active
-    - [] characters/:id/core
-    - [] characters/:id/crafting
-    - [] characters/:id/dungeons
-    - [] characters/:id/equipment
-    - [] characters/:id/equipmenttabs
-    - [] characters/:id/equipmenttabs/active
-    - [] characters/:id/heropoints
-    - [] characters/:id/inventory
-    - [] characters/:id/quests
-    - [] characters/:id/recipes
-    - [] characters/:id/sab
-    - [] characters/:id/skills
-    - [] characters/:id/specializations
-    - [] characters/:id/training
-  - [] colors
-  - [] commerce/delivery
-  - [] commerce/exchange
-  - [] commerce/listings
-  - [] commerce/prices
-  - [] commerce/transactions
-  - [] continents
-  - [] createsubtoken
-  - [] currencies
-  - [] dailycrafting
-  - [] dungeons
-  - [] emblem
-  - [] emotes
-  - [] events
-  - [] events-state
-  - [] files
-  - [] finishers
-  - [] gemstore/catalog
-  - [] gliders
-  - [] guild/:id
-    - [] guild/:id/log
-    - [] guild/:id/members
-    - [] guild/:id/ranks
-    - [] guild/:id/stash
-    - [] guild/:id/storage
-    - [] guild/:id/teams
-    - [] guild/:id/treasury
-    - [] guild/:id/upgrades
-  - [] guild/permissions
-  - [] guild/search
-  - [] guild/upgrades
-  - [] home
-    - [] home/cats
-    - [] home/nodes
-  - [] items
-  - [] itemstats
-  - [] legendaryarmory
-  - [] legends
-  - [] mailcarriers
-  - [] mapchests
-  - [] maps
-  - [] masteries
-  - [] materials
-  - [] minis
-  - [] mounts
-    - [] mounts/skins
-    - [] mounts/types
-  - [] novelties
-  - [] outfits
-  - [] pets
-  - [] professions
-  - [] pvp
-    - [] pvp/amulets
-    - [] pvp/games
-    - [] pvp/heroes
-    - [] pvp/ranks
-    - [] pvp/rewardtracks
-    - [] pvp/runes
-    - [] pvp/seasons
-      - [] pvp/seasons/:id/leaderboards
-        - [] pvp/seasons/:id/leaderboards/:board/:region
-    - [] pvp/sigils
-    - [] pvp/standings
-    - [] pvp/stats
-  - [] quaggans
-  - [] quests
-  - [] races
-  - [] raids
-  - [] recipes
-    - [] recipes/search
-  - [] skills
-  - [] skins
-  - [] specializations
-  - [] stories
-    - [] stories/seasons
-  - [] titles
-  - [] tokeninfo
-  - [] traits
+    - [x] account/masteries
+    - [x] account/mastery/points
+    - [x] account/materials
+    - [x] account/minis
+    - [x] account/mounts
+      - [x] account/mounts/skins
+      - [x] account/mounts/types
+    - [x] account/novelties
+    - [x] account/outfits
+    - [x] account/pvp/heroes
+    - [x] account/raids
+    - [x] account/recipes
+    - [x] account/skins
+    - [x] account/titles
+    - [x] account/wallet
+    - [x] account/worldbosses
+  - [x] achievements
+    - [ ] achievements/categories
+    - [ ] achievements/daily
+    - [ ] achievements/daily/tomorrow
+    - [ ] achievements/groups
+  - [ ] adventures
+    - [ ] adventures/:id/leaderboards
+      - [ ] adventures/:id/leaderboards/:board/:region
+  - [ ] backstory/answers
+  - [ ] backstory/questions
+  - [ ] build
+  - [ ] characters
+    - [ ] characters/:id/backstory
+    - [ ] characters/:id/buildtabs
+    - [ ] characters/:id/buildtabs/active
+    - [ ] characters/:id/core
+    - [ ] characters/:id/crafting
+    - [ ] characters/:id/dungeons
+    - [ ] characters/:id/equipment
+    - [ ] characters/:id/equipmenttabs
+    - [ ] characters/:id/equipmenttabs/active
+    - [ ] characters/:id/heropoints
+    - [ ] characters/:id/inventory
+    - [ ] characters/:id/quests
+    - [ ] characters/:id/recipes
+    - [ ] characters/:id/sab
+    - [ ] characters/:id/skills
+    - [ ] characters/:id/specializations
+    - [ ] characters/:id/training
+  - [ ] colors
+  - [ ] commerce/delivery
+  - [ ] commerce/exchange
+  - [ ] commerce/listings
+  - [ ] commerce/prices
+  - [ ] commerce/transactions
+  - [ ] continents
+  - [ ] createsubtoken
+  - [ ] currencies
+  - [ ] dailycrafting
+  - [ ] dungeons
+  - [ ] emblem
+  - [ ] emotes
+  - [ ] events
+  - [ ] events-state
+  - [ ] files
+  - [ ] finishers
+  - [ ] gemstore/catalog
+  - [ ] gliders
+  - [ ] guild/:id
+    - [ ] guild/:id/log
+    - [ ] guild/:id/members
+    - [ ] guild/:id/ranks
+    - [ ] guild/:id/stash
+    - [ ] guild/:id/storage
+    - [ ] guild/:id/teams
+    - [ ] guild/:id/treasury
+    - [ ] guild/:id/upgrades
+  - [ ] guild/permissions
+  - [ ] guild/search
+  - [ ] guild/upgrades
+  - [ ] home
+    - [ ] home/cats
+    - [ ] home/nodes
+  - [ ] items
+  - [ ] itemstats
+  - [ ] legendaryarmory
+  - [ ] legends
+  - [ ] mailcarriers
+  - [ ] mapchests
+  - [ ] maps
+  - [ ] masteries
+  - [ ] materials
+  - [ ] minis
+  - [ ] mounts
+    - [ ] mounts/skins
+    - [ ] mounts/types
+  - [ ] novelties
+  - [ ] outfits
+  - [ ] pets
+  - [ ] professions
+  - [ ] pvp
+    - [ ] pvp/amulets
+    - [ ] pvp/games
+    - [ ] pvp/heroes
+    - [ ] pvp/ranks
+    - [ ] pvp/rewardtracks
+    - [ ] pvp/runes
+    - [ ] pvp/seasons
+      - [ ] pvp/seasons/:id/leaderboards
+        - [ ] pvp/seasons/:id/leaderboards/:board/:region
+    - [ ] pvp/sigils
+    - [ ] pvp/standings
+    - [ ] pvp/stats
+  - [ ] quaggans
+  - [ ] quests
+  - [ ] races
+  - [ ] raids
+  - [ ] recipes
+    - [ ] recipes/search
+  - [ ] skills
+  - [ ] skins
+  - [ ] specializations
+  - [ ] stories
+    - [ ] stories/seasons
+  - [ ] titles
+  - [ ] tokeninfo
+  - [ ] traits
   - [-] vendors (API not active)
   - [x] worldbosses
   - [x] worlds
-  - [] wvw/abilities
-  - [] wvw/matches
-  - [] wvw/matches/overview
-  - [] wvw/matches/scores
-  - [] wvw/matches/stats
-  - [] wvw/matches/stats/:id/guilds/:guild_id
-  - [] wvw/matches/stats/:id/teams/:team/top/kdr
-  - [] wvw/matches/stats/:id/teams/:team/top/kills
-  - [] wvw/objectives
-  - [] wvw/ranks
-  - [] wvw/rewardtracks
-  - [] wvw/upgrades
+  - [ ] wvw/abilities
+  - [ ] wvw/matches
+  - [ ] wvw/matches/overview
+  - [ ] wvw/matches/scores
+  - [ ] wvw/matches/stats
+  - [ ] wvw/matches/stats/:id/guilds/:guild_id
+  - [ ] wvw/matches/stats/:id/teams/:team/top/kdr
+  - [ ] wvw/matches/stats/:id/teams/:team/top/kills
+  - [ ] wvw/objectives
+  - [ ] wvw/ranks
+  - [ ] wvw/rewardtracks
+  - [ ] wvw/upgrades
