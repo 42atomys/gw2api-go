@@ -104,53 +104,53 @@ type AchievementsCategory struct {
 }
 
 type AchievementsDailyStructure struct {
-	Pve      []AchievementsDaily
-	Pvp      []AchievementsDaily
-	Wvw      []AchievementsDaily
-	Fractals []AchievementsDaily
-	Special  []AchievementsDaily
+	Pve      []AchievementsDaily `json:"pve"`
+	Pvp      []AchievementsDaily `json:"pvp"`
+	Wvw      []AchievementsDaily `json:"wvw"`
+	Fractals []AchievementsDaily `json:"fractals"`
+	Special  []AchievementsDaily `json:"special"`
 }
 
 type AchievementsDaily struct {
 	// The achievement id.
-	ID int
+	ID int `json:"id"`
 	// Describes the level requirement for the daily to appear.
-	Level AchievementsDailyLevel
+	Level AchievementsDailyLevel `json:"level"`
 	// Describes if a daily requires a Guild Wars 2 campaign or not.
-	RequiredAccess AchievementsDailyRequiredAccess
+	RequiredAccess AchievementsDailyRequiredAccess `json:"required_access"`
 }
 
 type AchievementsDailyLevel struct {
 	// The minimum level. Any character below this level will not
 	// see this daily achievement.
-	Min int
+	Min int `json:"min"`
 	// The maximum level. Any character above this level will not
 	// see this daily achievement.
-	Max int
+	Max int `json:"max"`
 }
 
 type AchievementsDailyRequiredAccess struct {
 	// A Guild Wars 2 campaign.
 	// Can either be `GuildWars2`, `HeartOfThorns` or `PathOfFire`.
-	Product string
+	Product string `json:"product"`
 	// The condition if a account can or cannot see this daily achievement.
 	// Can either be `HasAccess` or `NoAccess`.
-	Condition string
+	Condition string `json:"condition"`
 }
 
 type AchievementsGroup struct {
 	// The group's GUID.
-	ID string
+	ID string `json:"id"`
 	// The group name.
-	Name string
+	Name string `json:"name"`
 	// The group description.
-	Description string
+	Description string `json:"description"`
 	// A number describing where to sort this group among other groups.
 	// Lowest numbers go first, highest numbers go last.
-	Order int
+	Order int `json:"order"`
 	// An array containing a number of category IDs that this group contains.
 	// @see `/v2/achievements/categories`.
-	Categories []int
+	Categories []int `json:"categories"`
 }
 
 // This resource returns all achievements in the game,

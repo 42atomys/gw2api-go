@@ -14,12 +14,11 @@ GW2-API is a complete and up-to-date wrapper in Golang.
 todo 
 ### TODO
 
-- [ ] Core wrapper
+- [x] Core wrapper
 - [x] Language support
-- [ ] API Token Permissions
+- [x] API Token Permissions
 - [ ] Route active support
 - [ ] Subtoken support
-- [ ] Pagination support
 - [ ] v2/
   - [x] account
     - [x] account/achievements
@@ -57,15 +56,15 @@ todo
     - [x] account/wallet
     - [x] account/worldbosses
   - [x] achievements
-    - [ ] achievements/categories
-    - [ ] achievements/daily
-    - [ ] achievements/daily/tomorrow
-    - [ ] achievements/groups
-  - [ ] adventures
-    - [ ] adventures/:id/leaderboards
-      - [ ] adventures/:id/leaderboards/:board/:region
-  - [ ] backstory/answers
-  - [ ] backstory/questions
+    - [x] achievements/categories
+    - [x] achievements/daily
+    - [x] achievements/daily/tomorrow
+    - [x] achievements/groups
+  - [-] adventures (API not active)
+    - [-] adventures/:id/leaderboards (API not active)
+      - [-] adventures/:id/leaderboards/:board/:region (API not active)
+  - [x] backstory/answers
+  - [x] backstory/questions
   - [ ] build
   - [ ] characters
     - [ ] characters/:id/backstory
@@ -161,7 +160,7 @@ todo
   - [ ] stories
     - [ ] stories/seasons
   - [ ] titles
-  - [ ] tokeninfo
+  - [x] tokeninfo
   - [ ] traits
   - [-] vendors (API not active)
   - [x] worldbosses
