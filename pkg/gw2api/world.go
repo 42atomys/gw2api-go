@@ -26,7 +26,7 @@ func (r *Requestor) WorldIDs(s []int) *Requestor {
 
 func (r *Requestor) Worlds(worlds *[]*World, ids ...int) *Requestor {
 	if len(ids) == 0 {
-		errors.New("at least one id must be given")
+		r.err = errors.New("at least one id must be given")
 		return r
 	}
 
