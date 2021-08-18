@@ -2,10 +2,6 @@
 package gw2api
 
 import (
-	"errors"
-	"fmt"
-	"net/url"
-	"strings"
 	"time"
 )
 
@@ -82,7 +78,7 @@ type AccountAchievement struct {
 	Unlocked bool `json:"unlocked"`
 }
 
-type AccountInventoryItem struct {
+type InventoryItem struct {
 	// The item's ID.
 	ID int `json:"id"`
 	// The amount of items in the item stack.
@@ -107,10 +103,10 @@ type AccountInventoryItem struct {
 	// If binding is Character, this field tells which character it is bound to.
 	BoundTo string `json:"bound_to"`
 	// The stats of the item
-	Stats AccountBankStat `json:"stats"`
+	Stats ItemStats `json:"stats"`
 }
 
-type AccountBankStat struct {
+type ItemStats struct {
 	// The ID of the item's stats. Can be resolved against /v2/itemstats.
 	ID int `json:"id"`
 	// The list of stats provided by this item. May include the following:
@@ -260,7 +256,7 @@ func (r *Requestor) AccountAchievements(achievements *[]*AccountAchievement) *Re
 // in the vault.
 // If a slot is empty, it will return null. The amount of slots/bank tabs is
 // implied by the length of the array.
-func (r *Requestor) AccountBank(accountBank *[]*AccountInventoryItem) *Requestor {
+func (r *Requestor) AccountBank(accountBank *[]*InventoryItem) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionInventory).
 		request("/account/bank", nil, &accountBank)
@@ -272,10 +268,10 @@ func (r *Requestor) AccountBank(accountBank *[]*AccountInventoryItem) *Requestor
 // The endpoint returns an array of objects, each representing a template
 // slot in the build storage. The amount of templates is implied by the
 // length of the array.
-func (r *Requestor) AccountBuildStorageIDs(accountBuildStorage *[]int) *Requestor {
+func (r *Requestor) AccountBuildStorageIDs(pointer *[]int) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionAccount).
-		request("/account/buildstorage", nil, &accountBuildStorage)
+		collectionIDs("/account/buildstorage", &pointer)
 	return r
 }
 
@@ -284,19 +280,10 @@ func (r *Requestor) AccountBuildStorageIDs(accountBuildStorage *[]int) *Requesto
 // The endpoint returns an array of objects, each representing a template
 // slot in the build storage. The amount of templates is implied by the
 // length of the array.
-func (r *Requestor) AccountBuildStorages(accountBuildStorage *[]*AccountBuildStorage, ids ...int) *Requestor {
-	if len(ids) == 0 {
-		r.err = errors.New("at least one id must be given")
-		return r
-	}
-
-	var urlValues url.Values
-	sIds := strings.Trim(strings.Replace(fmt.Sprint(ids), " ", ",", -1), "[]")
-	urlValues = url.Values{"ids": strings.Split(sIds, ",")}
-
+func (r *Requestor) AccountBuildStorages(pointer *[]*AccountBuildStorage, ids ...int) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionAccount).
-		request("/account/buildstorage", urlValues, &accountBuildStorage)
+		collection("/account/buildstorage", &pointer, ids)
 	return r
 }
 
@@ -305,10 +292,10 @@ func (r *Requestor) AccountBuildStorages(accountBuildStorage *[]*AccountBuildSto
 // The endpoint returns an array of objects, each representing a template
 // slot in the build storage. The amount of templates is implied by the
 // length of the array.
-func (r *Requestor) AccountBuildStorage(accountBuildStorage *AccountBuildStorage, id int) *Requestor {
+func (r *Requestor) AccountBuildStorage(pointer *AccountBuildStorage, id int) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionAccount).
-		request("/account/buildstorage", url.Values{"id": []string{fmt.Sprint(id)}}, &accountBuildStorage)
+		singleton("/account/buildstorage", &pointer, id)
 	return r
 }
 
@@ -410,7 +397,7 @@ func (r *Requestor) AccountHomeNodes(accountHomeNodes *[]string) *Requestor {
 // The endpoint returns an array of objects, each representing an item slot in
 // the shared inventory. If a slot is empty, it will return null.
 // The amount of slots is implied by the length of the array.
-func (r *Requestor) AccountInventory(accountInventory *[]*AccountInventoryItem) *Requestor {
+func (r *Requestor) AccountInventory(accountInventory *[]*InventoryItem) *Requestor {
 	r.
 		needPerms(TokenPermissionAccount, TokenPermissionInventory).
 		request("/account/inventory", nil, &accountInventory)

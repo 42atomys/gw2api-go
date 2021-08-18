@@ -1,13 +1,6 @@
 //go:generate easytags $GOFILE
 package gw2api
 
-import (
-	"errors"
-	"fmt"
-	"net/url"
-	"strings"
-)
-
 type BackstoryAnswer struct {
 	// The id of the answer.
 	ID string `json:"id"`
@@ -53,46 +46,37 @@ type BackstoryQuestion struct {
 }
 
 // This resource returns information about the Biography answers that are in the game.
-func (r *Requestor) BackstoryAnswer(backstoryAnswer *BackstoryAnswer, id string) *Requestor {
-	r.request("/backstory/answers", url.Values{"id": []string{id}}, &backstoryAnswer)
+func (r *Requestor) BackstoryAnswer(pointer *BackstoryAnswer, id string) *Requestor {
+	r.singleton("/backstory/answers", &pointer, id)
 	return r
 }
 
 // This resource returns information about the Biography answers that are in the game.
-func (r *Requestor) BackstoryAnswers(backstoryAnswers *[]*BackstoryAnswer, ids ...string) *Requestor {
-	r.request("/backstory/answers", url.Values{"id": ids}, &backstoryAnswers)
+func (r *Requestor) BackstoryAnswers(pointer *[]*BackstoryAnswer, ids ...string) *Requestor {
+	r.collection("/backstory/answers", &pointer, ids)
 	return r
 }
 
 // This resource returns information about the Biography answers that are in the game.
-func (r *Requestor) BackstoryAnswersIDs(s []string) *Requestor {
-	r.request("/backstory/answers", nil, &s)
+func (r *Requestor) BackstoryAnswersIDs(pointer *[]string) *Requestor {
+	r.collectionIDs("/backstory/answers", &pointer)
 	return r
 }
 
 // This resource returns information about the Biography questions that are in the game.
-func (r *Requestor) BackstoryQuestion(backstoryQuestion *BackstoryQuestion, id int) *Requestor {
-	r.request("/backstory/questions", url.Values{"id": []string{fmt.Sprint(id)}}, &backstoryQuestion)
+func (r *Requestor) BackstoryQuestion(pointer *BackstoryQuestion, id int) *Requestor {
+	r.singleton("/backstory/questions", &pointer, id)
 	return r
 }
 
 // This resource returns information about the Biography questions that are in the game.
-func (r *Requestor) BackstoryQuestions(backstoryQuestions *[]*BackstoryQuestion, ids ...int) *Requestor {
-	if len(ids) == 0 {
-		r.err = errors.New("at least one id must be given")
-		return r
-	}
-
-	var urlValues url.Values
-	sIds := strings.Trim(strings.Replace(fmt.Sprint(ids), " ", ",", -1), "[]")
-	urlValues = url.Values{"ids": strings.Split(sIds, ",")}
-
-	r.request("/backstory/questions", urlValues, &backstoryQuestions)
+func (r *Requestor) BackstoryQuestions(pointer *[]*BackstoryQuestion, ids ...int) *Requestor {
+	r.collection("/backstory/questions", &pointer, ids)
 	return r
 }
 
 // This resource returns information about the Biography questions that are in the game.
-func (r *Requestor) BackstoryQuestionsIDs(s []int) *Requestor {
-	r.request("/backstory/questions", nil, &s)
+func (r *Requestor) BackstoryQuestionsIDs(pointer *[]int) *Requestor {
+	r.collectionIDs("/backstory/questions", &pointer)
 	return r
 }

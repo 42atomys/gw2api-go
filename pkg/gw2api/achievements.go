@@ -1,13 +1,6 @@
 //go:generate easytags $GOFILE
 package gw2api
 
-import (
-	"errors"
-	"fmt"
-	"net/url"
-	"strings"
-)
-
 type Achievement struct {
 	// The achievement id.
 	ID int `json:"id"`
@@ -156,61 +149,43 @@ type AchievementsGroup struct {
 // This resource returns all achievements in the game,
 // including localized names and icons.
 // A list of all ids is returned.
-func (r *Requestor) AchievementIDs(s []int) *Requestor {
-	r.request("/achievements", nil, &s)
+func (r *Requestor) AchievementIDs(pointer *[]int) *Requestor {
+	r.collectionIDs("/achievements", &pointer)
 	return r
 }
 
 // This resource returns all achievements in the game,
 // When multiple ids are requested using the ids
 // parameter, a list of response objects is returned.
-func (r *Requestor) Achievements(achievements *[]*Achievement, ids ...int) *Requestor {
-	if len(ids) == 0 {
-		r.err = errors.New("at least one id must be given")
-		return r
-	}
-
-	var urlValues url.Values
-	sIds := strings.Trim(strings.Replace(fmt.Sprint(ids), " ", ",", -1), "[]")
-	urlValues = url.Values{"ids": strings.Split(sIds, ",")}
-
-	r.request("/achievements", urlValues, &achievements)
+func (r *Requestor) Achievements(pointer *[]*Achievement, ids ...int) *Requestor {
+	r.collection("/achievements", &pointer, ids)
 	return r
 }
 
 // This resource returns an achievement in the game by her ID,
-func (r *Requestor) Achievement(achievement *Achievement, id int) *Requestor {
-	r.request("/achievements", url.Values{"id": []string{fmt.Sprint(id)}}, &achievement)
+func (r *Requestor) Achievement(pointer *Achievement, id int) *Requestor {
+	r.singleton("/achievements", &pointer, id)
 	return r
 }
 
 // This resource returns all achievements categories in the game,
 // A list of all ids is returned.
-func (r *Requestor) AchievementsCategoryIDs(s []int) *Requestor {
-	r.request("/achievements/categories", nil, &s)
+func (r *Requestor) AchievementsCategoryIDs(pointer *[]int) *Requestor {
+	r.collectionIDs("/achievements/categories", &pointer)
 	return r
 }
 
 // This resource returns all achievements categories in the game,
 // When multiple ids are requested using the ids
 // parameter, a list of response objects is returned.
-func (r *Requestor) AchievementsCategories(achievementsCategory *[]*AchievementsCategory, ids ...int) *Requestor {
-	if len(ids) == 0 {
-		r.err = errors.New("at least one id must be given")
-		return r
-	}
-
-	var urlValues url.Values
-	sIds := strings.Trim(strings.Replace(fmt.Sprint(ids), " ", ",", -1), "[]")
-	urlValues = url.Values{"ids": strings.Split(sIds, ",")}
-
-	r.request("/achievements/categories", urlValues, &achievementsCategory)
+func (r *Requestor) AchievementsCategories(pointer *[]*AchievementsCategory, ids ...int) *Requestor {
+	r.collection("/achievements/categories", &pointer, ids)
 	return r
 }
 
 // This resource returns an achievement category in the game by her ID,
-func (r *Requestor) AchievementsCategory(achievementsCategory *AchievementsCategory, id int) *Requestor {
-	r.request("/achievements/categories", url.Values{"id": []string{fmt.Sprint(id)}}, &achievementsCategory)
+func (r *Requestor) AchievementsCategory(pointer *AchievementsCategory, id int) *Requestor {
+	r.singleton("/achievements/categories", &pointer, id)
 	return r
 }
 
@@ -238,26 +213,21 @@ func (r *Requestor) AchievementsDailyTomorrow(achievementsDaily *AchievementsDai
 
 // This resource returns all the top-level groups for achievements.
 // A list of all ids is returned.
-func (r *Requestor) AchievementsGroupIDs(s []string) *Requestor {
-	r.request("/achievements/groups", nil, &s)
+func (r *Requestor) AchievementsGroupIDs(pointer []string) *Requestor {
+	r.collectionIDs("/achievements/groups", &pointer)
 	return r
 }
 
 // This resource returns all the top-level groups for achievements.
 // When multiple ids are requested using the ids
 // parameter, a list of response objects is returned.
-func (r *Requestor) AchievementsGroups(achievementsGroup *[]*AchievementsGroup, ids ...string) *Requestor {
-	if len(ids) == 0 {
-		r.err = errors.New("at least one id must be given")
-		return r
-	}
-
-	r.request("/achievements/groups", url.Values{"ids": ids}, &achievementsGroup)
+func (r *Requestor) AchievementsGroups(pointer *[]*AchievementsGroup, ids ...string) *Requestor {
+	r.collection("/achievements/groups", &pointer, ids)
 	return r
 }
 
 // This resource returns a top level group for achievements in the game by her ID,
-func (r *Requestor) AchievementsGroup(achievementsGroup *AchievementsGroup, id string) *Requestor {
-	r.request("/achievements/groups", url.Values{"id": []string{id}}, &achievementsGroup)
+func (r *Requestor) AchievementsGroup(pointer *AchievementsGroup, id string) *Requestor {
+	r.singleton("/achievements/groups", &pointer, id)
 	return r
 }

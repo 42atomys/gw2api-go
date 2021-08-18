@@ -66,42 +66,44 @@ todo
   - [x] backstory/answers
   - [x] backstory/questions
   - [x] build
-  - [ ] characters
-    - [ ] characters/:id/backstory
-    - [ ] characters/:id/buildtabs
-    - [ ] characters/:id/buildtabs/active
-    - [ ] characters/:id/core
-    - [ ] characters/:id/crafting
-    - [ ] characters/:id/dungeons
-    - [ ] characters/:id/equipment
-    - [ ] characters/:id/equipmenttabs
-    - [ ] characters/:id/equipmenttabs/active
-    - [ ] characters/:id/heropoints
-    - [ ] characters/:id/inventory
-    - [ ] characters/:id/quests
-    - [ ] characters/:id/recipes
-    - [ ] characters/:id/sab
-    - [ ] characters/:id/skills
-    - [ ] characters/:id/specializations
-    - [ ] characters/:id/training
+  - [x] characters
+    - [x] (characters all and single)
+    - [x] characters/:id/backstory
+    - [x] characters/:id/buildtabs
+    - [x] characters/:id/buildtabs/active
+    - [x] characters/:id/core
+    - [x] characters/:id/crafting
+    - [-] characters/:id/dungeons (API not active)
+    - [x] characters/:id/equipment
+    - [x] characters/:id/equipmenttabs
+    - [x] characters/:id/equipmenttabs/active
+    - [x] characters/:id/heropoints
+    - [x] characters/:id/inventory
+    - [x] characters/:id/quests
+    - [x] characters/:id/recipes
+    - [x] characters/:id/sab
+    - [x] characters/:id/skills
+    - [x] characters/:id/specializations
+    - [x] characters/:id/training
   - [x] colors
-  - [ ] commerce/delivery
-  - [ ] commerce/exchange
-  - [ ] commerce/listings
-  - [ ] commerce/prices
-  - [ ] commerce/transactions
-  - [ ] continents
-  - [ ] createsubtoken
-  - [ ] currencies
-  - [ ] dailycrafting
-  - [ ] dungeons
+  - [x] commerce/delivery
+  - [x] commerce/exchange
+  - [x] commerce/listings
+  - [x] commerce/prices
+  - [x] commerce/transactions
+    - [ ] Pagination System
+  - [x] continents
+  - [x] createsubtoken
+  - [x] currencies
+  - [x] dailycrafting
+  - [x] dungeons
   - [ ] emblem
   - [ ] emotes
-  - [ ] events
-  - [ ] events-state
+  - [-] events (API not active)
+  - [-] events-state (API not active)
   - [ ] files
   - [ ] finishers
-  - [ ] gemstore/catalog
+  - [ ] gemstore/catalog (API not active)
   - [ ] gliders
   - [ ] guild/:id
     - [ ] guild/:id/log

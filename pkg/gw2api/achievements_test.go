@@ -43,7 +43,7 @@ func TestRequestor_AchievementIDs(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.requestor.AchievementIDs(tt.args.achievementIDs).Err(); (got != nil) != tt.wantErr {
+			if got := tt.requestor.AchievementIDs(&tt.args.achievementIDs).Err(); (got != nil) != tt.wantErr {
 				t.Errorf("Requestor.Achievement() = %v, want error %v", got, tt.wantErr)
 			}
 		})
@@ -112,7 +112,7 @@ func TestRequestor_AchievementsCategoryIDs(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.requestor.AchievementsCategoryIDs(tt.args.achievementsCategoryIDs).Err(); (got != nil) != tt.wantErr {
+			if got := tt.requestor.AchievementsCategoryIDs(&tt.args.achievementsCategoryIDs).Err(); (got != nil) != tt.wantErr {
 				t.Errorf("Requestor.AchievementsCategory() = %v, want error %v", got, tt.wantErr)
 			}
 		})

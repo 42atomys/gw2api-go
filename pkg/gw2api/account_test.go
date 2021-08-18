@@ -89,7 +89,7 @@ func TestAccountBank(t *testing.T) {
 				t.Skip("Requestor.AccountBank() = Cannot test without api key")
 			}
 
-			var accountBank []*gw2api.AccountInventoryItem
+			var accountBank []*gw2api.InventoryItem
 			if got := r.Auth(tt.apiKey).AccountBank(&accountBank).Err(); (got != nil) != tt.wantErr {
 				t.Errorf("Requestor.AccountBank() = %v, want error %v", got, tt.wantErr)
 			}
@@ -453,7 +453,7 @@ func TestAccountInventory(t *testing.T) {
 				t.Skip("Requestor.AccountInventory() = Cannot test without api key")
 			}
 
-			var result []*gw2api.AccountInventoryItem
+			var result []*gw2api.InventoryItem
 			if got := r.Auth(tt.apiKey).AccountInventory(&result).Err(); (got != nil) != tt.wantErr {
 				t.Errorf("Requestor.AccountInventory() = %v, want error %v", got, tt.wantErr)
 			}
