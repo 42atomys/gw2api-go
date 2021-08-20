@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"atomys.codes/gw2api-go/pkg/gw2api"
+	"atomys.codes/gw2api-go"
 )
 
 func TestAccount(t *testing.T) {

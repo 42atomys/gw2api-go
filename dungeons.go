@@ -3,16 +3,16 @@ package gw2api
 
 type Dungeon struct {
 	// The name of the dungeon
-	ID string
+	ID string `json:"id"`
 	// An array of all paths on current dungeon
-	Paths []DungeonPath
+	Paths []DungeonPath `json:"paths"`
 }
 
 type DungeonPath struct {
 	// The given name for the dungeon path.
-	ID string
+	ID string `json:"id"`
 	// The type of the chosen path. Can be either Story or Explorable
-	Type string
+	Type string `json:"type"`
 }
 
 // This resource returns a list of the dungeons

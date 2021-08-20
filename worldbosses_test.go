@@ -3,7 +3,7 @@ package gw2api_test
 import (
 	"testing"
 
-	"atomys.codes/gw2api-go/pkg/gw2api"
+	"atomys.codes/gw2api-go"
 )
 
 func TestRequestor_WorldBoss(t *testing.T) {
