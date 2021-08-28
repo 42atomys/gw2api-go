@@ -222,8 +222,8 @@ Its the same process when your API Key dont have the required scope
   - [ ] skills
   - [ ] skins
   - [ ] specializations
-  - [ ] stories
-    - [ ] stories/seasons
+  - [x] stories
+    - [x] stories/seasons
   - [x] titles
   - [x] tokeninfo
   - [ ] traits
